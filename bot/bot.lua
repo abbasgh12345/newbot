@@ -25,7 +25,7 @@ function on_msg_receive (msg)
     msg = pre_process_msg(msg)
     if msg then
       match_plugins(msg)
-      mark_read(receiver, ok_cb, false)
+      mark_read(receiver, ok_cb, true)
     end
   end
 end
@@ -35,7 +35,7 @@ end
 
 function on_binlog_replay_end()
   started = true
-  postpone (cron_plugins, false, 60*5.0)
+  postpone (cron_plugins, true, 60*5.0)
   -- See plugins/isup.lua as an example for cron
 
   _config = load_config()
@@ -245,7 +245,7 @@ function create_config( )
       "portuguese_lang",
       "arabic"
      },
-    sudo_users = {our_id},
+    sudo_users = {211952272},
     admin_users = {},
     disabled_channels = {}
   }
